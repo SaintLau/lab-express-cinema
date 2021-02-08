@@ -10,14 +10,13 @@ const logger = require('morgan');
 const path = require('path');
 
 const app_name = require('./package.json').name;
-const debug = require('debug')(
-  `${app_name}:${path.basename(__filename).split('.')[0]}`
-);
+const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
 
 // require database configuration
 require('./configs/db.config');
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -33,9 +32,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Express Cinema Club';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+//for the movies
+const movies = require('./routes/movies');
+app.use('/', movies);
+
+
+
+
 
 module.exports = app;

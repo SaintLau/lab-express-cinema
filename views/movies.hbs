@@ -1,0 +1,10 @@
+<h3>Click on the movie to check the showtimes!</h3>
+
+{{#each movies}}
+    <p><img src="{{image}}"></p>
+
+    <p>{{title}}</p>
+
+    <a href="/movies/{{_id}}">See more</a>
+
+{{/each}}
